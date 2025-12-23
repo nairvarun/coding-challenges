@@ -6,6 +6,7 @@ import (
 	"io"
 	"net/http"
 	"os"
+	"strings"
 
 	"github.com/browserutils/kooky"
 	"github.com/browserutils/kooky/browser/safari"
@@ -59,5 +60,5 @@ func Fetch(year int, day int) string {
 		panic(err)
 	}
 
-	return string(body)
+	return strings.Trim(string(body), "\n")
 }
