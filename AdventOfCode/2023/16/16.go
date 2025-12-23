@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/nairvarun/AdventOfCode/internal/set"
+	"github.com/nairvarun/coding-challenges/AdventOfCode/internal/set"
 )
 
 type Beam struct {

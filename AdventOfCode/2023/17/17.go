@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/nairvarun/AdventOfCode/internal/set"
+	"github.com/nairvarun/coding-challenges/AdventOfCode/internal/set"
 )
 
 type coordinate struct {

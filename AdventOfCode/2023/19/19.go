@@ -7,7 +7,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/nairvarun/AdventOfCode/internal/projectroot"
+	"github.com/nairvarun/coding-challenges/AdventOfCode/internal/projectroot"
 )
 
 type part struct {

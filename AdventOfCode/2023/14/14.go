@@ -6,7 +6,7 @@ import (
 	"slices"
 	"strings"
 
-	"github.com/nairvarun/AdventOfCode/internal/strutils"
+	"github.com/nairvarun/coding-challenges/AdventOfCode/internal/strutils"
 )
 
 func p1(file string) {
