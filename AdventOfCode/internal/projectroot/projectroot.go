@@ -6,8 +6,14 @@ import (
 )
 
 var (
-	_, f, _, _ = runtime.Caller(0)
-
-	// root path
-	Path = filepath.Join(filepath.Dir(f), "../..")
+	Path string
 )
+
+func init() {
+	_, f, _, ok := runtime.Caller(0)
+	if !ok {
+		panic("could not determine project root path")
+	}
+
+	Path = filepath.Join(filepath.Dir(f), "../..")
+}
