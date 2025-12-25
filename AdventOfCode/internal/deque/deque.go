@@ -1,6 +1,10 @@
 package deque
 
-import "container/list"
+import (
+	"container/list"
+	"fmt"
+	"strings"
+)
 
 type Deque[T comparable] struct {
 	list *list.List
@@ -60,4 +64,17 @@ func (d *Deque[T]) PopRight() (T, bool) {
 
 func (d *Deque[T]) PushRight(elem T) {
 	d.list.PushBack(elem)
+}
+
+func (d *Deque[T]) String() string {
+	var sb strings.Builder
+	sb.WriteString("[")
+	for e := d.list.Front(); e != nil; e = e.Next() {
+		if e != d.list.Front() {
+			sb.WriteString(",")
+		}
+		fmt.Fprintf(&sb, "%v", e.Value)
+	}
+	sb.WriteString("]")
+	return sb.String()
 }
