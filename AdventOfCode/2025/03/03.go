@@ -2,9 +2,10 @@ package main
 
 import (
 	"fmt"
-	"strings"
 	"math"
+	"strings"
 
+	"github.com/nairvarun/coding-challenges/AdventOfCode/internal/deque"
 	"github.com/nairvarun/coding-challenges/AdventOfCode/internal/input"
 	"github.com/nairvarun/coding-challenges/AdventOfCode/internal/strutils"
 )
@@ -34,21 +35,40 @@ func part1(batteryBanks []string) {
 
 func part2(batteryBanks []string) {
 	var res int
-	l := 0
-	r := len(batteryBanks[0]) - 11
 	for _, battries := range batteryBanks {
 		batteryRunes := []rune(battries)
-		for n := range 12 {
-			mx := 0
-			for i := l; i < r; i++ {
-				b := strutils.Rtoi(batteryRunes[i])
-				if b > mx {
-					mx = b
+		ptr := len(batteryBanks[0]) - 12
+		d := deque.New[int]()
+		var val int
+
+		for i := range ptr {
+			b := strutils.Rtoi(batteryRunes[i])
+			for {
+				if right, ok := d.PeekRight(); !ok || b <= right {
+					break
 				}
+				d.PopRight()
 			}
-			res += mx * int(math.Pow10(n))
+			d.PushRight(b)
 		}
+
+		for n := 11; n >= 0; n-- {
+			b := strutils.Rtoi(batteryRunes[ptr])
+			for {
+				if right, ok := d.PeekRight(); !ok || b <= right {
+					break
+				}
+				d.PopRight()
+			}
+			d.PushRight(b)
+			mx, _ := d.PopLeft()
+			val += mx * int(math.Pow10(n))
+			ptr++
+		}
+
+		res += val
 	}
+
 	fmt.Println(res)
 }
 
